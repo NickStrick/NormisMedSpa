@@ -1,0 +1,46 @@
+{
+  "name": "Site-Crafter_bring-it-sports",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+ "dependencies": {
+    "@resend/node": "npm:resend@^6.0.2",
+    "@aws-sdk/client-s3": "^3.896.0",
+    "@aws-sdk/client-dynamodb": "^3.896.0",
+    "@aws-sdk/lib-dynamodb": "^3.896.0",
+    "@aws-sdk/s3-request-presigner": "^3.901.0",
+    "@fortawesome/free-brands-svg-icons": "^7.0.0",
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^3.0.1",
+    "framer-motion": "^12.16.0",
+    "geist": "^1.2.0",
+    "lucide-react": "^0.513.0",
+    "next": "^16.1.2",
+    "openai": "^6.18.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^18",
+    "react-credit-cards-2": "^1.0.3",
+    "react-dom": "^18",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.28.0",
+    "eslint-config-next": "15.3.3",
+    "postcss": "^8.5.4",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-cli": "^0.1.2",
+    "typescript": "^5"
+  }
+}

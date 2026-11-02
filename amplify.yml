@@ -1,0 +1,21 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        # Amplify console env vars only exist at build time; write the server-side
+        # ones to .env.production so Next.js API routes can read them at runtime.
+        # (NEXT_PUBLIC_* are inlined at build, but are included for completeness.)
+        - env | grep -E '^(APP_AWS_|S3_|DDB_|NEXT_PUBLIC_|OPENAI_|RESEND_|EMAIL_FROM|ADMIN_AI_|CHECKOUT_|CLOVER_|CONVERGE_|SQUARE_)' >> .env.production || true
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
