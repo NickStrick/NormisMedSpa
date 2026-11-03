@@ -6,6 +6,7 @@ import type { RentalSchedulerSection } from '@/types/site';
 import { useSite } from '@/context/SiteContext';
 import { useCart } from '@/context/CartContext';
 import AnimatedSection from '@/components/AnimatedSection';
+import Dropdown, { FIELD_CONTROL_CLASS } from '@/components/Dropdown';
 import { SeperatorWave } from '@/components/SeperatorWave';
 import { resolveAssetUrl } from '@/lib/assetUrl';
 import {
@@ -374,20 +375,20 @@ export default function RentalScheduler({
             {/* Duration + book */}
             {startTime && day && (
               <div className="border-t pt-4 flex flex-col md:flex-row md:items-end gap-4">
-                <label className="block">
-                  <span className="block text-sm font-medium mb-1">How long?</span>
-                  <select
-                    className="input bg-white text-[var(--text-1)]"
-                    value={slotCount}
-                    onChange={(e) => setSlotCount(Number(e.target.value))}
-                  >
-                    {durationOptions.map((n) => (
-                      <option key={n} value={n}>
-                        {formatDuration(n * resource.slotMinutes)}{showPrices && ` — ${formatPrice(bookingPriceCents(resource, n), currency)}`}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                <div>
+                  <span id={`${id}-duration-label`} className="block text-sm font-medium mb-1">How long?</span>
+                  <Dropdown
+                    labelId={`${id}-duration-label`}
+                    name="duration"
+                    className="md:min-w-[11rem]"
+                    value={String(slotCount)}
+                    onChange={(v) => setSlotCount(Number(v))}
+                    options={durationOptions.map((n) => ({
+                      value: String(n),
+                      label: `${formatDuration(n * resource.slotMinutes)}${showPrices ? ` — ${formatPrice(bookingPriceCents(resource, n), currency)}` : ''}`,
+                    }))}
+                  />
+                </div>
                 <div className="flex-1 text-sm">
                   <div className="font-semibold">{resource.name}</div>
                   <div className="text-muted">{endTime && formatBookingLabel(day.date, startTime, endTime)}</div>
@@ -422,7 +423,7 @@ export default function RentalScheduler({
                 <label className="block">
                   <span className="block text-sm font-medium mb-1">Name *</span>
                   <input
-                    className="input w-full bg-white text-[var(--text-1)]"
+                    className={FIELD_CONTROL_CLASS}
                     required
                     autoComplete="name"
                     value={contact.name}
@@ -433,7 +434,7 @@ export default function RentalScheduler({
                   <span className="block text-sm font-medium mb-1">Email *</span>
                   <input
                     type="email"
-                    className="input w-full bg-white text-[var(--text-1)]"
+                    className={FIELD_CONTROL_CLASS}
                     required
                     autoComplete="email"
                     value={contact.email}
@@ -444,7 +445,7 @@ export default function RentalScheduler({
                   <span className="block text-sm font-medium mb-1">Phone</span>
                   <input
                     type="tel"
-                    className="input w-full bg-white text-[var(--text-1)]"
+                    className={FIELD_CONTROL_CLASS}
                     autoComplete="tel"
                     value={contact.phone}
                     onChange={(e) => setContact((c) => ({ ...c, phone: e.target.value }))}

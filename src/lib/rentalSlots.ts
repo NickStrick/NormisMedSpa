@@ -8,7 +8,7 @@ import type { RentalResource, SiteRentalsConfig } from '@/types/site';
 export const RENTAL_DEFAULTS = {
   timezone: 'America/Chicago',
   bookingWindowDays: 28,
-  leadTimeMinutes: 60,
+  leadTimeMinutes: 360,
   minSlots: 1,
   maxSlots: 8,
 };

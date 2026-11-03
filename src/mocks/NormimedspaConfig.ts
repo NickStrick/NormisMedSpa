@@ -383,7 +383,7 @@ export const mockSiteConfig: SiteConfig = {
   rentals: {
     timezone: "America/Chicago",
     bookingWindowDays: 28,
-    leadTimeMinutes: 1440,
+    leadTimeMinutes: 360,
     resources: [
       {
         id: "visit-with-norma",

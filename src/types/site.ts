@@ -997,7 +997,7 @@ export type SiteRentalsConfig = {
   resources: RentalResource[];
   timezone?: string;            // IANA, e.g. "America/Chicago" — slot times are local to the business
   bookingWindowDays?: number;   // how far ahead customers can book (default 28)
-  leadTimeMinutes?: number;     // no bookings starting sooner than this (default 60)
+  leadTimeMinutes?: number;     // no bookings starting sooner than this (default 360 = 6 hours)
 };
 
 // Customer-facing booking calendar for config.rentals.resources

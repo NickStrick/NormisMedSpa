@@ -585,15 +585,18 @@ export default function RentalsModal({ onClose }: RentalsModalProps) {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium mb-1">Minimum notice (minutes)</label>
+                  <label className="block text-xs font-medium mb-1">Booking notice (hours)</label>
                   <input
                     type="number"
                     min={0}
+                    step={0.5}
                     className="input w-full"
-                    value={rentals.leadTimeMinutes ?? RENTAL_DEFAULTS.leadTimeMinutes}
-                    onChange={(e) => updateRentals({ leadTimeMinutes: Math.max(0, Number(e.target.value) || 0) })}
+                    value={(rentals.leadTimeMinutes ?? RENTAL_DEFAULTS.leadTimeMinutes) / 60}
+                    onChange={(e) => updateRentals({ leadTimeMinutes: Math.max(0, Math.round((Number(e.target.value) || 0) * 60)) })}
                   />
-                  <p className="text-xs text-muted mt-1">Times starting sooner than this can&apos;t be booked online.</p>
+                  <p className="text-xs text-muted mt-1">
+                    Times starting sooner than this can&apos;t be booked online. Default is {RENTAL_DEFAULTS.leadTimeMinutes / 60} hours; 0 allows any upcoming time.
+                  </p>
                 </div>
               </div>
             )}
